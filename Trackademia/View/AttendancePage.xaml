@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.AttendancePage"
+             Title="AttendancePage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label Text="Attendance Records" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+
+            <Label Text="Student Name:" FontAttributes="Bold" />
+            <Label Text="{Binding StudentName}" />
+
+            <Label Text="Student Number:" FontAttributes="Bold" />
+            <Label Text="{Binding StudentNumber}" />
+            <ScrollView>
+                <ListView ItemsSource="{Binding AttendanceRecords}"
+                      SelectedItem="{Binding SelectedAttendance}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Label Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" FontAttributes="Bold" />
+                                    <Label Text=" | " />
+                                    <Label Text="{Binding Status}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+
+            <Label Text="Select Date:" FontAttributes="Bold" />
+            <DatePicker Date="{Binding SelectedDate}" />
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Mark Present"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Command="{Binding MarkPresentCommand}"
+                    CommandParameter="Present" />
+                <Button Text="Mark Absent"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Command="{Binding MarkAbsentCommand}"
+                    CommandParameter="Absent" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

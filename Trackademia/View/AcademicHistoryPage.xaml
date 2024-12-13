@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.AcademicHistoryPage"
+             Title="AcademicHistoryPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label Text="Academic History" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+
+            <Label Text="Student Name:" FontAttributes="Bold" />
+            <Label Text="{Binding StudentName}" />
+
+            <ListView ItemsSource="{Binding AcademicHistoryRecords}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <Label Text="{Binding Level}" FontAttributes="Bold" />
+                                <Label Text="{Binding ProgramName}"/>
+                                <Label Text="{Binding SchoolYear}" />
+                                <Label Text="{Binding Semester}" />
+                                <Label Text="Grade: " TextColor="White">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Grade: " />
+                                            <Span Text="{Binding Grade}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Button for opening modal -->
+            <Button Text="Add Academic Record"
+                BackgroundColor="Blue"
+                TextColor="White"
+                Command="{Binding OpenAddRecordModalCommand}" />
+
+            <!-- Modal Content -->
+            <ContentView IsVisible="{Binding IsAddRecordModalVisible}" BackgroundColor="#80000000">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="20" WidthRequest="300">
+                    <VerticalStackLayout>
+                        <Label Text="Add Academic Record" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+
+                        <Label Text="Program" />
+                        <Picker ItemsSource="{Binding Programs}"
+                            ItemDisplayBinding="{Binding ProgramName}"
+                            SelectedItem="{Binding SelectedProgram}" />
+
+                        <Label Text="Level" />
+                        <Picker ItemsSource="{Binding Levels}" SelectedItem="{Binding SelectedLevel}" />
+
+                        <Label Text="Semester" />
+                        <Picker ItemsSource="{Binding Semesters}" SelectedItem="{Binding SelectedSemester}" />
+
+                        <Label Text="School Year" />
+                        <Entry Text="{Binding SchoolYearInput}" Placeholder="e.g., 2024-2025" />
+
+                        <Label Text="Grade" />
+                        <Entry Text="{Binding GradeInput}" Keyboard="Numeric" />
+
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Button Text="Add"
+                                BackgroundColor="Green"
+                                TextColor="White"
+                                Command="{Binding AddAcademicRecordCommand}" />
+                            <Button Text="Cancel"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                Command="{Binding CloseAddRecordModalCommand}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </ContentView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
