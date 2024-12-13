@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.UserPage"
+             Title="UserPage"
+             x:Name="UserPageView">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+             Text="Student List"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center" />
+
+            <Button Text="View Students"
+                    Command="{Binding LoadUserCommand}"/>
+
+
+            <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" 
+                                      Padding="10">
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text=" | "/>
+                                <Label Text="{Binding StudentId}"/>
+                                <Label Text=" | "/>
+                                <Label Text="{Binding ProgramName}"/>
+                                <Button Text="View Details"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}"
+                                     CommandParameter="{Binding ID}" />
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="Add Student" Command="{Binding OpenAddStudentModalCommand}" />
+                <Button Text="Update Student" Command="{Binding OpenUpdateStudentModalCommand}" IsEnabled="{Binding SelectedUser, Converter={StaticResource NullToBoolConverter}}" />
+                <Button Text="Delete Student"
+                 Command="{Binding DeleteUserCommand}"/>
+            </HorizontalStackLayout>
+            <!-- Add/Update Student Modal -->
+            <ContentView IsVisible="{Binding IsStudentModalVisible}">
+                <Frame Padding="20" BackgroundColor="Black" VerticalOptions="Center">
+                    <VerticalStackLayout>
+                        <Label Text="Student Form" FontAttributes="Bold" HorizontalOptions="Center" />
+
+                        <Label Text="Name" />
+                        <Entry Placeholder="Enter Name" Text="{Binding NameInput}" />
+
+                        <Label Text="Email" />
+                        <Entry Placeholder="Enter Email" Text="{Binding EmailInput}" />
+
+                        <Label Text="Student ID" />
+                        <Entry Placeholder="Enter Student ID" Text="{Binding StudentIdInput}" />
+
+                        <Label Text="Address" />
+                        <Entry Placeholder="Enter Address" Text="{Binding AddressInput}" />
+
+                        <Label Text="Birthdate" />
+                        <DatePicker Date="{Binding BirthdateInput}" />
+
+                        <Label Text="Program" />
+                        <Picker ItemsSource="{Binding Programs}" 
+                            ItemDisplayBinding="{Binding ProgramName}" 
+                            SelectedItem="{Binding SelectedProgram}" />
+
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                            <Button Text="Save" Command="{Binding SaveStudentCommand}" />
+                            <Button Text="Cancel" Command="{Binding CloseStudentModalCommand}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </ContentView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

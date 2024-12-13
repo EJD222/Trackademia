@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Trackademia"
+    xmlns:view="clr-namespace:Trackademia.View"
     Shell.FlyoutBehavior="Disabled"
     Title="Trackademia">
 
@@ -11,5 +12,25 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="UserPage"
+        ContentTemplate="{DataTemplate view:UserPage}"
+        Route="UserPage"/>
+
+    <ShellContent
+        Title="Student Details"
+        ContentTemplate="{DataTemplate view:StudentDetailsPage}"
+        Route="StudentDetailsPage" />
+
+    <ShellContent
+        Title="Attendance Records"
+        ContentTemplate="{DataTemplate view:AttendancePage}"
+        Route="AttendancePage" />
+
+    <ShellContent
+        Title="Academic History"
+        ContentTemplate="{DataTemplate view:AcademicHistoryPage}"
+        Route="AcademicHistoryPage" />
 
 </Shell>

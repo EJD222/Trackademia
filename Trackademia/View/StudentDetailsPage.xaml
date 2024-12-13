@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.StudentDetailsPage"
+             Title="StudentDetailsPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label Text="Student Details" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+
+            <Label Text="Name:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.Name}"/>
+
+            <Label Text="Email:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.Email}"/>
+
+            <Label Text="Student ID:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.StudentId}"/>
+
+            <Label Text="Address:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.Address}"/>
+
+            <Label Text="Birthdate:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.Birthdate, StringFormat='{0:yyyy-MM-dd}'}"/>
+
+            <Label Text="Program:"
+               FontAttributes="Bold"/>
+            <Label Text="{Binding Student.ProgramName}"/>
+
+            <Button Text="Academic History"
+                Command="{Binding ViewAcademicHistoryCommand}"
+                CommandParameter="{Binding Student.ID}" />
+
+            <Button Text="Attendance Records"
+                Command="{Binding ViewAttendanceCommand}"
+                CommandParameter="{Binding Student.ID}" />
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
