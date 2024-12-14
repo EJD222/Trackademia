@@ -7,4 +7,8 @@ public partial class UserPage : ContentPage
 		InitializeComponent();
         BindingContext = new UserViewModel();
     }
+    private async void OnDashboardButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//Dashboard");
+    }
 }

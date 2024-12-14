@@ -14,7 +14,6 @@
             <Button Text="View Students"
                     Command="{Binding LoadUserCommand}"/>
 
-
             <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -77,6 +76,9 @@
                 </Frame>
             </ContentView>
 
+            <Button
+              Text="BackToDashboard"
+              Clicked="OnDashboardButtonClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
