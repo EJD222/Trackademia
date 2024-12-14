@@ -28,19 +28,17 @@
                    HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
 
-        <VerticalStackLayout HorizontalOptions="Center"
+        <VerticalStackLayout HorizontalOptions="FillAndExpand"
                              VerticalOptions="End"
                              Spacing="15"
-                             Padding="0,0,0,50">
+                             Padding="30,0,30,50">
             <Button Text="Login"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
                     BackgroundColor="White"
                     TextColor="#1672EC"
                     CornerRadius="5"
                     Padding="10"
-                    WidthRequest="300"
-                    Clicked="OnLoginButtonClicked" 
-                    HorizontalOptions="Center" />
+                    Clicked="OnLoginButtonClicked" />
             <Button Text="Sign Up"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
                     BackgroundColor="Transparent" 
@@ -48,9 +46,7 @@
                     TextColor="White"
                     CornerRadius="5"
                     Padding="10"
-                    BorderWidth="2"
-                    WidthRequest="300"
-                    HorizontalOptions="Center" />
+                    BorderWidth="2" />
         </VerticalStackLayout>
     </Grid>
 </ContentPage>
