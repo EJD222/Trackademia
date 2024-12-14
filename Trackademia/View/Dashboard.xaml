@@ -102,38 +102,108 @@
                         </Grid>
                     </Frame>
                     <Button Text="View Students"
-                            BackgroundColor="Transparent" 
+                            BackgroundColor="Transparent"
+                            Padding="15"
                             BorderColor="{DynamicResource PrimaryColor}"
                             FontFamily="{DynamicResource FontFamilySemiBold}"
                             TextColor="{DynamicResource PrimaryColor}"
                             Clicked="OnViewStudentsButtonClicked" />
-                    
-                    <!-- List of Students Per Program -->
-                    <StackLayout>
-                        <Label Text="Students per Program (List)"
-                                FontFamily="{DynamicResource FontFamilySemiBold}"
-                                FontSize="16"
-                                TextColor="{DynamicResource TertiaryColor}" />
 
-                        <CollectionView ItemsSource="{Binding StudentCountByProgram}" 
-                                        VerticalOptions="Start" 
-                                        HeightRequest="200">
+                    <Label Text="Programs"
+                           FontFamily="{DynamicResource FontFamilyBold}"
+                           FontSize="22"
+                           TextColor="{DynamicResource SecondaryColor}"
+                           Margin="0,30,0,0" /> <!-- Reduced top margin -->
+                    
+                    <!-- 3-column layout for program icons -->
+                    <Grid ColumnDefinitions="*,*,*" Margin="0,20,0,30"> <!-- 3 columns -->
+           
+                        <Frame Grid.Column="0"
+                               Padding="15"
+                               BackgroundColor="{DynamicResource PrimaryColor}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="Center"
+                               Margin="5,0,5,0">
+                            <StackLayout>
+                                <Image Source="bsit_icon.png" 
+                                       WidthRequest="50" 
+                                       HeightRequest="50" 
+                                       Margin="0,5,0,5"/>
+                                <Label Text="BSIT" 
+                                       FontSize="14" 
+                                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                                       TextColor="{DynamicResource TertiaryColor}" 
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Grid.Column="1"
+                               Padding="15"
+                               BackgroundColor="{DynamicResource PrimaryColor}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="Center"
+                               Margin="5,0,5,0">
+                            <StackLayout>
+                                <Image Source="bscs_icon.png" 
+                                       WidthRequest="50" 
+                                       HeightRequest="50" 
+                                       Margin="0,5,0,5"/>
+                                <Label Text="BSCS" 
+                                       FontSize="14" 
+                                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                                       TextColor="{DynamicResource TertiaryColor}" 
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </Frame>
+
+                       <Frame Grid.Column="2"
+                              Padding="15"
+                              BackgroundColor="{DynamicResource PrimaryColor}"
+                              VerticalOptions="CenterAndExpand"
+                              HorizontalOptions="Center"
+                              Margin="5,0,5,0">
+                           <StackLayout>
+                               <Image Source="bmma_icon.png" 
+                                      WidthRequest="50" 
+                                      HeightRequest="50" 
+                                      Margin="0,5,0,5"/>
+                               <Label Text="BMMA" 
+                                      FontSize="14" 
+                                      FontFamily="{DynamicResource FontFamilySemiBold}"
+                                      TextColor="{DynamicResource TertiaryColor}" 
+                                      HorizontalTextAlignment="Center" />
+                           </StackLayout>
+                       </Frame>
+                    </Grid>
+
+                    <StackLayout Padding="0,0,0,15">
+                        <Label Text="No. of Students Per Program"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="20"
+                               TextColor="{DynamicResource SecondaryColor}"
+                               Margin="0,5,0,5" />
+
+                        <CollectionView ItemsSource="{Binding StudentCountByProgram}"
+                                        VerticalOptions="Start"
+                                        HeightRequest="130">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="*, Auto" Padding="5,5">
+                                    <Grid ColumnDefinitions="*, Auto" Padding="0,5">
                                         <Label Text="{Binding Key}" 
-                                            FontSize="14" 
-                                            TextColor="{DynamicResource SecondaryColor}" />
-                                                            <Label Text="{Binding Value}" 
-                                            FontSize="14" 
-                                            TextColor="{DynamicResource PrimaryColor}" 
-                                            HorizontalTextAlignment="End" />
+                                               FontSize="14" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}"
+                                               TextColor="{DynamicResource SecondaryColor}" 
+                                               Margin="0,0,0,0"/>
+                                        <Label Text="{Binding Value}" 
+                                               FontSize="14" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               HorizontalTextAlignment="End" />
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </StackLayout>
-
 
                 </VerticalStackLayout>
             </ScrollView>
@@ -142,6 +212,7 @@
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
                     TextColor="{DynamicResource TertiaryColor}"
+                    Padding="15"
                     Clicked="OnLogoutButtonClicked" />
         </VerticalStackLayout>
     </ScrollView>
