@@ -33,13 +33,11 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!-- Button for opening modal -->
             <Button Text="Add Academic Record"
                 BackgroundColor="Blue"
                 TextColor="White"
                 Command="{Binding OpenAddRecordModalCommand}" />
 
-            <!-- Modal Content -->
             <ContentView IsVisible="{Binding IsAddRecordModalVisible}" BackgroundColor="#80000000">
                 <Frame VerticalOptions="Center" HorizontalOptions="Center" Padding="20" WidthRequest="300">
                     <VerticalStackLayout>
