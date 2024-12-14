@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.Dashboard"
+             BackgroundColor="{DynamicResource TertiaryColor}"
+             Shell.NavBarIsVisible="False"
+             Title="Dashboard">
+    <ScrollView>
+        <VerticalStackLayout Padding="30,30">
+            
+            
+            <Button Text="View User"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    TextColor="{DynamicResource TertiaryColor}"
+                    Clicked="OnViewUserButtonClicked"/>
+            <Button Text="Logout"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    Clicked="OnLogoutButtonClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
