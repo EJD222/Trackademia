@@ -1,18 +1,26 @@
-namespace Trackademia.View;
+using System;
+using Trackademia.ViewModel;
 
-public partial class Dashboard : ContentPage
+namespace Trackademia.View
 {
-	public Dashboard()
-	{
-		InitializeComponent();
-	}
-    private async void OnViewUserButtonClicked(object sender, EventArgs e)
+    public partial class Dashboard : ContentPage
     {
-        await Shell.Current.GoToAsync("//UserPage");
-    }
+        public Dashboard()
+        {
+            InitializeComponent();
 
-    private async void OnLogoutButtonClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//LoginPage");
+            // Set the view model as the BindingContext
+            BindingContext = new DashboardViewModel();
+        }
+
+        private async void OnViewUserButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//UserPage");
+        }
+
+        private async void OnLogoutButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
     }
 }

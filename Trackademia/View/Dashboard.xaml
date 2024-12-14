@@ -7,17 +7,116 @@
              Title="Dashboard">
     <ScrollView>
         <VerticalStackLayout Padding="30,30">
+
+            <ScrollView>
+                <VerticalStackLayout>
+
+                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *, Auto" VerticalOptions="Start">
+                    <Image Grid.Column="0"
+                           Grid.Row="0"
+                           Source="calendar_icon.png"
+                           WidthRequest="16"
+                           HeightRequest="16"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,0,10,0" />
+
+                    <Label Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding CurrentDate}" 
+                           FontFamily="{DynamicResource FontFamilyRegular}"
+                           FontSize="12"
+                           TextColor="{DynamicResource SecondaryColor}"
+                           VerticalOptions="Center" />
+
+                    <Label Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           FontSize="18"
+                           VerticalOptions="Start"
+                           Margin="0,5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Hello, " 
+                                      FontFamily="{DynamicResource FontFamilyRegular}" 
+                                      TextColor="{DynamicResource SecondaryColor}" />
             
-            
+                                <Span Text="Admin" 
+                                      FontFamily="{DynamicResource FontFamilyBold}" 
+                                      TextColor="{DynamicResource PrimaryColor}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Frame Grid.Column="2"
+                           Grid.Row="0"
+                           Grid.RowSpan="2"  
+                           CornerRadius="25"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           BackgroundColor="{DynamicResource PrimaryColor}"
+                           Padding="5"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End">
+                            <Image Source="trackademia_logo_1.png"
+                                   WidthRequest="30"
+                                   Aspect="AspectFit" />
+                        </Frame>
+                    </Grid>
+                    
+            <Frame CornerRadius="10"
+                   Margin="0,30,0,30" 
+                   Padding="20"
+                   BackgroundColor="{DynamicResource PrimaryColor}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand" 
+                   HeightRequest="125">
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Total Students"
+                           FontFamily="{DynamicResource FontFamilySemiBold}"
+                           FontSize="16"
+                           TextColor="{DynamicResource TertiaryColor}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+
+                    <Image Grid.Row="0"
+                           Grid.Column="1"
+                           Source="student_icon_1.png"
+                           WidthRequest="32"
+                           HeightRequest="32"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"
+                           Margin="10,0,0,0" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2" 
+                           Text="{Binding StudentCount}"
+                           FontFamily="{DynamicResource FontFamilyBold}"
+                           FontSize="24"
+                           TextColor="{DynamicResource TertiaryColor}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" 
+                           Margin="0,25,0,0"/>
+                </Grid>
+            </Frame>
+
+
+
+                </VerticalStackLayout>
+            </ScrollView>
+       
             <Button Text="View User"
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
                     TextColor="{DynamicResource TertiaryColor}"
-                    Clicked="OnViewUserButtonClicked"/>
+                    Clicked="OnViewUserButtonClicked" />
             <Button Text="Logout"
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
-                    Clicked="OnLogoutButtonClicked"/>
+                    TextColor="{DynamicResource TertiaryColor}"
+                    Clicked="OnLogoutButtonClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
