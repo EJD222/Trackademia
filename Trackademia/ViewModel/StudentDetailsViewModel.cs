@@ -32,12 +32,14 @@ namespace Trackademia.ViewModel
                 OnPropertyChanged();
             }
         }
+        public ICommand ViewStudentInformationCommand { get; }
         public ICommand ViewAttendanceCommand { get; }
         public ICommand ViewAcademicHistoryCommand { get; }
 
         public StudentDetailsViewModel()
         {
             _userService = new UserService();
+            ViewStudentInformationCommand = new Command<int>(GoToStudentInformationPage);
             ViewAttendanceCommand = new Command<int>(GoToAttendancePage);
             ViewAcademicHistoryCommand = new Command<int>(GoToAcademicHistoryPage);
         }
@@ -53,6 +55,13 @@ namespace Trackademia.ViewModel
             {
                 Console.WriteLine($"Error fetching student details: {ex.Message}");
             }
+        }
+        private async void GoToStudentInformationPage(int id)
+        {
+            await Shell.Current.GoToAsync("StudentInformationPage", new Dictionary<string, object>
+            {
+                { "Id", id }
+            });
         }
         private async void GoToAttendancePage(int id)
         {
