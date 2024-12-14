@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml.Controls; // For TextBox
+using Microsoft.UI.Xaml.Media; // For SolidColorBrush
+using Microsoft.UI.Xaml; // For DependencyProperty
 
 namespace Trackademia
 {
@@ -9,15 +13,38 @@ namespace Trackademia
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+                    fonts.AddFont("Poppins-Semibold.ttf", "PoppinsSemiBold");
+                    fonts.AddFont("Poppins-Bold.ttf", "Bold");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            // Extend EntryHandler.Mapper for platform-specific customizations
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
+            {
+#if ANDROID
+                // Remove background color on Android
+                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+#endif
+
+#if WINDOWS
+                if (handler.PlatformView is TextBox platformView)
+                {
+                    // Use explicit namespaces to resolve ambiguity
+                    platformView.Resources["TextControlFocusVisualPrimaryBrush"] =
+                        new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent);
+
+                    platformView.Resources["TextControlFocusVisualSecondaryBrush"] =
+                        new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent);
+                }
+#endif
+            });
 
             return builder.Build();
         }
