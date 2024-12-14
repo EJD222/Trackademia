@@ -32,6 +32,11 @@
         Title="Student Details"
         ContentTemplate="{DataTemplate view:StudentDetailsPage}"
         Route="StudentDetailsPage" />
+    
+    <ShellContent
+        Title="Personal Information"
+        ContentTemplate="{DataTemplate view:StudentInformationPage}"
+        Route="StudentInformationPage" />
 
     <ShellContent
         Title="Attendance Records"
