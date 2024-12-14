@@ -28,7 +28,7 @@
 
                 <Label Text="Login"
                        FontFamily="{DynamicResource FontFamilyBold}"
-                       FontSize="22"
+                       FontSize="12"
                        TextColor="{DynamicResource PrimaryColor}"
                        Margin="0,10,0,30" />
 

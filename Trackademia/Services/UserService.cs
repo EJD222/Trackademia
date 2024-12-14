@@ -12,6 +12,7 @@ namespace Trackademia.Services
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "http://localhost/trackademia/";
+        public event EventHandler UsersChanged;
 
         public UserService()
         {
@@ -22,15 +23,18 @@ namespace Trackademia.Services
         {
             var response =
                 await _httpClient.GetFromJsonAsync<List<User>>($"{BaseUrl}get_user.php");
+            UsersChanged?.Invoke(this, EventArgs.Empty);
             return response ?? new List<User>();
         }
 
         //Add user
         public async Task<string> AddUsersAsync(User user)
         {
-            var response =
-                await _httpClient.PostAsJsonAsync($"{BaseUrl}add_user.php", user);
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}add_user.php", user);
             var result = await response.Content.ReadAsStringAsync();
+
+            UsersChanged?.Invoke(this, EventArgs.Empty);
+
             return result;
         }
 
@@ -46,8 +50,7 @@ namespace Trackademia.Services
         //Delete User
         public async Task<string> DeleteUsersAsync(int userId)
         {
-            var response =
-                await _httpClient.PostAsJsonAsync($"{BaseUrl}delete_user.php", new { id = userId });
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}delete_user.php", new { id = userId });
             var result = await response.Content.ReadAsStringAsync();
             return result;
         }
@@ -113,7 +116,23 @@ namespace Trackademia.Services
             var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}add_academic_history.php", requestData);
             return await response.Content.ReadAsStringAsync();
         }
+        public async Task<int> GetStudentCountAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<StudentCountResponse>($"{BaseUrl}get_student_count.php");
+                return response?.Count ?? 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching student count: {ex.Message}");
+                return 0;
+            }
+        }
 
-
+        private class StudentCountResponse
+        {
+            public int Count { get; set; }
+        }
     }
 }
