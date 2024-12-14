@@ -1,16 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Shell.NavBarIsVisible="False"
              x:Class="Trackademia.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Button
-                Text="View User"
-                Clicked="ClickedViewUser"/>
-        </VerticalStackLayout>
-    </ScrollView>
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{DynamicResource FontFamilyBold}"/>
+    </Page.Behaviors>
 
+    <Grid>
+        <Image Source="login_background.png"
+               Aspect="AspectFill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand" />
+
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Spacing="10">
+            <Image Source="trackademia_logo_1.png"
+                   Aspect="AspectFit"
+                   HeightRequest="175" />
+            <Label Text="Trackademia"
+                   FontFamily="{DynamicResource FontFamilyBold}"
+                   FontSize="30" 
+                   TextColor="White"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="End"
+                             Spacing="15"
+                             Padding="0,0,0,50">
+            <Button Text="Login"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    BackgroundColor="White"
+                    TextColor="#1672EC"
+                    CornerRadius="5"
+                    Padding="10"
+                    WidthRequest="300"
+                    Clicked="OnLoginButtonClicked" 
+                    HorizontalOptions="Center" />
+            <Button Text="Sign Up"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    BackgroundColor="Transparent" 
+                    BorderColor="White"
+                    TextColor="White"
+                    CornerRadius="5"
+                    Padding="10"
+                    BorderWidth="2"
+                    WidthRequest="300"
+                    HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
