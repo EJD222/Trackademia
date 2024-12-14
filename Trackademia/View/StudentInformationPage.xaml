@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trackademia.View.StudentInformationPage"
+             Shell.NavBarIsVisible="False">
+    <VerticalStackLayout Padding="30,30">
+        <Label Text="Personal Information" 
+               FontFamily="{DynamicResource FontFamilyBold}"
+               FontSize="20" 
+               HorizontalOptions="Center"/>
+        <Label Text="Name"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+
+        <Label Text="{Binding Student.Name}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+        <Label Text="Email"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+        <Label Text="{Binding Student.Email}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+
+        <Label Text="Student ID"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+        <Label Text="{Binding Student.StudentId}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+
+        <Label Text="Address"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+        <Label Text="{Binding Student.Address}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+
+        <Label Text="Birthdate"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+        <Label Text="{Binding Student.Birthdate, StringFormat='{0:yyyy-MM-dd}'}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+
+        <Label Text="Program"
+               FontFamily="{DynamicResource FontFamilySemiBold}"
+               FontSize="16"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Margin="0,10,0,0"/>
+        <Label Text="{Binding Student.ProgramName}"
+               FontFamily="{DynamicResource FontFamilyRegular}"
+               Margin="0,10,0,0"/>
+    </VerticalStackLayout>
+</ContentPage>
