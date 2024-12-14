@@ -14,6 +14,16 @@
         Route="MainPage" />
 
     <ShellContent
+        Title="LoginPage"
+        ContentTemplate="{DataTemplate view:LoginPage}"
+        Route="LoginPage" />
+
+    <ShellContent
+        Title="Dashboard"
+        ContentTemplate="{DataTemplate view:Dashboard}"
+        Route="Dashboard"/>
+
+    <ShellContent
         Title="UserPage"
         ContentTemplate="{DataTemplate view:UserPage}"
         Route="UserPage"/>
