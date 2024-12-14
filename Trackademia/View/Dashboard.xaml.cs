@@ -13,7 +13,7 @@ namespace Trackademia.View
             BindingContext = new DashboardViewModel();
         }
 
-        private async void OnViewUserButtonClicked(object sender, EventArgs e)
+        private async void OnViewStudentsButtonClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//UserPage");
         }

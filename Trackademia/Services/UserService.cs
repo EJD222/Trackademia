@@ -134,5 +134,47 @@ namespace Trackademia.Services
         {
             public int Count { get; set; }
         }
+
+        public async Task<Dictionary<string, int>> GetStudentCountByProgramAsync()
+        {
+            Console.WriteLine("GetStudentCountByProgramAsync called.");
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<StudentCountByProgramResponse>($"{BaseUrl}get_student_count_by_program.php");
+
+                if (response?.Success == true)
+                {
+                    Console.WriteLine("API call successful. Data received:");
+                    foreach (var item in response.Data)
+                    {
+                        Console.WriteLine($"ProgramName: {item.ProgramName}, StudentCount: {item.StudentCount}");
+                    }
+
+                    return response.Data.ToDictionary(item => item.ProgramName, item => item.StudentCount);
+                }
+
+                Console.WriteLine("API call failed or returned no data.");
+                return new Dictionary<string, int>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching student count by program: {ex.Message}");
+                return new Dictionary<string, int>();
+            }
+        }
+
+
+        public class StudentCountByProgramResponse
+        {
+            public bool Success { get; set; }
+            public List<StudentCountByProgramItem> Data { get; set; }
+        }
+
+        public class StudentCountByProgramItem
+        {
+            public string ProgramName { get; set; }
+            public int StudentCount { get; set; }
+        }
+
     }
 }

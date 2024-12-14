@@ -6,7 +6,7 @@
              Shell.NavBarIsVisible="False"
              Title="Dashboard">
     <ScrollView>
-        <VerticalStackLayout Padding="30,30">
+        <VerticalStackLayout Padding="30">
 
             <ScrollView>
                 <VerticalStackLayout>
@@ -62,56 +62,82 @@
                                    Aspect="AspectFit" />
                         </Frame>
                     </Grid>
+
+                    <Frame CornerRadius="10"
+                           Margin="0,30,0,15" 
+                           Padding="20"
+                           BackgroundColor="{DynamicResource PrimaryColor}"
+                           VerticalOptions="Start"
+                           HorizontalOptions="FillAndExpand" 
+                           HeightRequest="125">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Total Students"
+                                   FontFamily="{DynamicResource FontFamilySemiBold}"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource TertiaryColor}"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+                            <Image Grid.Row="0"
+                                Grid.Column="1"
+                                Source="student_icon_1.png"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Margin="10,0,0,0" />
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2" 
+                                   Text="{Binding StudentCount}"
+                                   FontFamily="{DynamicResource FontFamilyBold}"
+                                   FontSize="24"
+                                   TextColor="{DynamicResource TertiaryColor}"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" 
+                                   Margin="0,25,0,0"/>
+                        </Grid>
+                    </Frame>
+                    <Button Text="View Students"
+                            BackgroundColor="Transparent" 
+                            BorderColor="{DynamicResource PrimaryColor}"
+                            FontFamily="{DynamicResource FontFamilySemiBold}"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            Clicked="OnViewStudentsButtonClicked" />
                     
-            <Frame CornerRadius="10"
-                   Margin="0,30,0,30" 
-                   Padding="20"
-                   BackgroundColor="{DynamicResource PrimaryColor}"
-                   VerticalOptions="Start"
-                   HorizontalOptions="FillAndExpand" 
-                   HeightRequest="125">
-                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
-                    <Label Grid.Row="0"
-                           Grid.Column="0"
-                           Text="Total Students"
-                           FontFamily="{DynamicResource FontFamilySemiBold}"
-                           FontSize="16"
-                           TextColor="{DynamicResource TertiaryColor}"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center" />
+                    <!-- List of Students Per Program -->
+                    <StackLayout>
+                        <Label Text="Students per Program (List)"
+                                FontFamily="{DynamicResource FontFamilySemiBold}"
+                                FontSize="16"
+                                TextColor="{DynamicResource TertiaryColor}" />
 
-                    <Image Grid.Row="0"
-                           Grid.Column="1"
-                           Source="student_icon_1.png"
-                           WidthRequest="32"
-                           HeightRequest="32"
-                           VerticalOptions="Center"
-                           HorizontalOptions="End"
-                           Margin="10,0,0,0" />
-
-                    <Label Grid.Row="1"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2" 
-                           Text="{Binding StudentCount}"
-                           FontFamily="{DynamicResource FontFamilyBold}"
-                           FontSize="24"
-                           TextColor="{DynamicResource TertiaryColor}"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center" 
-                           Margin="0,25,0,0"/>
-                </Grid>
-            </Frame>
-
+                        <CollectionView ItemsSource="{Binding StudentCountByProgram}" 
+                                        VerticalOptions="Start" 
+                                        HeightRequest="200">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*, Auto" Padding="5,5">
+                                        <Label Text="{Binding Key}" 
+                                            FontSize="14" 
+                                            TextColor="{DynamicResource SecondaryColor}" />
+                                                            <Label Text="{Binding Value}" 
+                                            FontSize="14" 
+                                            TextColor="{DynamicResource PrimaryColor}" 
+                                            HorizontalTextAlignment="End" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
 
 
                 </VerticalStackLayout>
             </ScrollView>
        
-            <Button Text="View User"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    FontFamily="{DynamicResource FontFamilySemiBold}"
-                    TextColor="{DynamicResource TertiaryColor}"
-                    Clicked="OnViewUserButtonClicked" />
             <Button Text="Logout"
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     FontFamily="{DynamicResource FontFamilySemiBold}"
