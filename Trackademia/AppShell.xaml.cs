@@ -11,7 +11,6 @@ namespace Trackademia
             Routing.RegisterRoute("AttendancePage", typeof(AttendancePage));
             Routing.RegisterRoute("AcademicHistoryPage", typeof(AcademicHistoryPage));
 
-
         }
     }
 }
