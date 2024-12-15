@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.AttendancePage"
+             BackgroundColor="{DynamicResource TertiaryColor}"
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout Padding="30,30">
@@ -12,51 +13,82 @@
                    Margin="0,10"/>
             <Label Text="{Binding StudentName}"
                    FontFamily="{DynamicResource FontFamilySemiBold}"
-                   FontSize="16"
-                   Margin="0,25"
+                   FontSize="20"
+                   Margin="0,15"
                    HorizontalTextAlignment="Center"/>
             <Label Text="{Binding StudentNumber}"
-                   FontFamily="{DynamicResource FontFamilyRegular}"
-                   FontSize="16"
-                   Margin="-20"
+                   FontFamily="{DynamicResource FontFamilySemiBold}"
+                   FontSize="20"
+                   Margin="0,-15,0,-5"
                    HorizontalTextAlignment="Center"/>
 
-            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,35" />
+            <Frame BackgroundColor="#e1edfb" CornerRadius="10" Padding="15,15,15,30"  Margin="0,35">
+                <VerticalStackLayout Spacing="30">
+                    <!-- Attendance Records List -->
+                    <ScrollView>
+                        <ListView ItemsSource="{Binding AttendanceRecords}" SelectedItem="{Binding SelectedAttendance}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" Padding="10">
+                                            <Label 
+                                                Text="{Binding Date, StringFormat='{0:MMM dd, yyyy, ddd}'}"
+                                                FontFamily="{DynamicResource FontFamilySemiBold}"
+                                                FontSize="14"
+                                                HorizontalOptions="StartAndExpand" />
+                                            <Label 
+                                                Text="{Binding Status}" 
+                                                FontFamily="{DynamicResource FontFamilyRegular}"
+                                                FontSize="14"
+                                                HorizontalOptions="EndAndExpand">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Present">
+                                                        <Setter Property="TextColor" Value="#1672EC" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                    <!-- Date Selection -->
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Label Text="Select Date:" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="18"
+                               VerticalOptions="Center"/>
+                        <DatePicker Date="{Binding SelectedDate}" 
+                                    FontFamily="{DynamicResource FontFamilyRegular}"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
 
-            <ScrollView>
-                <ListView ItemsSource="{Binding AttendanceRecords}"
-                      SelectedItem="{Binding SelectedAttendance}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Padding="10">
-                                    <Label Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" FontAttributes="Bold" />
-                                    <Label Text=" | " />
-                                    <Label Text="{Binding Status}" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
-
-            <Label Text="Select Date:" FontAttributes="Bold" />
-            <DatePicker Date="{Binding SelectedDate}" />
-
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button 
-                    Text="Mark Present"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    Command="{Binding MarkPresentCommand}"
-                    CommandParameter="Present" />
-                <Button 
-Text="Mark Absent"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    Command="{Binding MarkAbsentCommand}"
-                    CommandParameter="Absent" />
-            </HorizontalStackLayout>
+                    <!-- Mark Present and Mark Absent Buttons -->
+                    <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                        <Button 
+                            Text="Mark Present"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            TextColor="White"
+                            Command="{Binding MarkPresentCommand}"
+                            CommandParameter="Present"
+                            FontFamily="{DynamicResource FontFamilySemiBold}"
+                            CornerRadius="5"
+                            Padding="10" />
+                        <Button 
+                            Text="Mark Absent"
+                            BackgroundColor="{DynamicResource SecondaryColor}"
+                            TextColor="White"
+                            Command="{Binding MarkAbsentCommand}"
+                            CommandParameter="Absent"
+                            FontFamily="{DynamicResource FontFamilySemiBold}"
+                            CornerRadius="5"
+                            Padding="10" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
