@@ -1,219 +1,264 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trackademia.View.Dashboard"
-             BackgroundColor="{DynamicResource TertiaryColor}"
-             Shell.NavBarIsVisible="False"
-             Title="Dashboard">
-    <ScrollView>
-        <VerticalStackLayout Padding="30">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            x:Class="Trackademia.View.Dashboard"
+            BackgroundColor="{DynamicResource TertiaryColor}"
+            Shell.NavBarIsVisible="False"
+            Title="Dashboard">
 
-            <ScrollView>
-                <VerticalStackLayout>
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+               Command="{Binding LoadDashboardDataCommand}">
+        <ScrollView>
+            <VerticalStackLayout Padding="30" Spacing="20">
+                <!-- Header Section -->
+                <Grid RowDefinitions="Auto, Auto" 
+                     ColumnDefinitions="Auto, *, Auto" 
+                     VerticalOptions="Start">
 
-                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *, Auto" VerticalOptions="Start">
                     <Image Grid.Column="0"
-                           Grid.Row="0"
-                           Source="calendar_icon.png"
-                           WidthRequest="16"
-                           HeightRequest="16"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Start"
-                           Margin="0,0,10,0" />
+                          Grid.Row="0"
+                          Source="calendar_icon.png"
+                          WidthRequest="16"
+                          HeightRequest="16"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Start"
+                          Margin="0,0,10,0" />
 
                     <Label Grid.Column="1"
-                           Grid.Row="0"
-                           Text="{Binding CurrentDate}" 
-                           FontFamily="{DynamicResource FontFamilyRegular}"
-                           FontSize="12"
-                           TextColor="{DynamicResource SecondaryColor}"
-                           VerticalOptions="Center" />
+                          Grid.Row="0"
+                          Text="{Binding CurrentDate}"
+                          FontFamily="{DynamicResource FontFamilyRegular}"
+                          FontSize="12"
+                          TextColor="{DynamicResource SecondaryColor}"
+                          VerticalOptions="Center" />
 
                     <Label Grid.Row="1"
-                           Grid.ColumnSpan="2"
-                           FontSize="18"
-                           VerticalOptions="Start"
-                           Margin="0,5,0,0">
+                          Grid.ColumnSpan="2"
+                          FontSize="18"
+                          VerticalOptions="Start"
+                          Margin="0,5,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Hello, " 
-                                      FontFamily="{DynamicResource FontFamilyRegular}" 
-                                      TextColor="{DynamicResource SecondaryColor}" />
-            
-                                <Span Text="Admin" 
-                                      FontFamily="{DynamicResource FontFamilyBold}" 
-                                      TextColor="{DynamicResource PrimaryColor}" />
+                                <Span Text="Hello, "
+                                     FontFamily="{DynamicResource FontFamilyRegular}"
+                                     TextColor="{DynamicResource SecondaryColor}" />
+                                <Span Text="Admin"
+                                     FontFamily="{DynamicResource FontFamilyBold}"
+                                     TextColor="{DynamicResource PrimaryColor}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
                     <Frame Grid.Column="2"
-                           Grid.Row="0"
-                           Grid.RowSpan="2"  
-                           CornerRadius="25"
-                           HeightRequest="50"
-                           WidthRequest="50"
-                           BackgroundColor="{DynamicResource PrimaryColor}"
-                           Padding="5"
-                           VerticalOptions="Center"
-                           HorizontalOptions="End">
-                            <Image Source="trackademia_logo_1.png"
-                                   WidthRequest="30"
-                                   Aspect="AspectFit" />
-                        </Frame>
-                    </Grid>
-
-                    <Frame CornerRadius="10"
-                           Margin="0,30,0,15" 
-                           Padding="20"
-                           BackgroundColor="{DynamicResource PrimaryColor}"
-                           VerticalOptions="Start"
-                           HorizontalOptions="FillAndExpand" 
-                           HeightRequest="125">
-                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
-                            <Label Grid.Row="0"
-                                   Grid.Column="0"
-                                   Text="Total Students"
-                                   FontFamily="{DynamicResource FontFamilySemiBold}"
-                                   FontSize="16"
-                                   TextColor="{DynamicResource TertiaryColor}"
-                                   HorizontalOptions="Start"
-                                   VerticalOptions="Center" />
-
-                            <Image Grid.Row="0"
-                                Grid.Column="1"
-                                Source="student_icon_1.png"
-                                WidthRequest="32"
-                                HeightRequest="32"
-                                VerticalOptions="Center"
-                                HorizontalOptions="End"
-                                Margin="10,0,0,0" />
-
-                            <Label Grid.Row="1"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="2" 
-                                   Text="{Binding StudentCount}"
-                                   FontFamily="{DynamicResource FontFamilyBold}"
-                                   FontSize="24"
-                                   TextColor="{DynamicResource TertiaryColor}"
-                                   HorizontalOptions="Start"
-                                   VerticalOptions="Center" 
-                                   Margin="0,25,0,0"/>
-                        </Grid>
+                          Grid.Row="0"
+                          Grid.RowSpan="2"
+                          CornerRadius="25"
+                          HeightRequest="50"
+                          WidthRequest="50"
+                          BackgroundColor="{DynamicResource PrimaryColor}"
+                          Padding="5"
+                          VerticalOptions="Center"
+                          HorizontalOptions="End">
+                        <Image Source="trackademia_logo_1.png"
+                              WidthRequest="30"
+                              Aspect="AspectFit" />
                     </Frame>
-                    <Button Text="View Students"
-                            BackgroundColor="Transparent"
-                            Padding="15"
-                            BorderColor="{DynamicResource PrimaryColor}"
-                            FontFamily="{DynamicResource FontFamilySemiBold}"
-                            TextColor="{DynamicResource PrimaryColor}"
-                            Clicked="OnViewStudentsButtonClicked" />
+                </Grid>
 
-                    <Label Text="Programs"
-                           FontFamily="{DynamicResource FontFamilyBold}"
-                           FontSize="22"
-                           TextColor="{DynamicResource SecondaryColor}"
-                           Margin="0,30,0,0" /> <!-- Reduced top margin -->
-                    
-                    <!-- 3-column layout for program icons -->
-                    <Grid ColumnDefinitions="*,*,*" Margin="0,20,0,30"> <!-- 3 columns -->
-           
-                        <Frame Grid.Column="0"
-                               Padding="15"
-                               BackgroundColor="{DynamicResource PrimaryColor}"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="Center"
-                               Margin="5,0,5,0">
-                            <StackLayout>
-                                <Image Source="bsit_icon.png" 
-                                       WidthRequest="50" 
-                                       HeightRequest="50" 
-                                       Margin="0,5,0,5"/>
-                                <Label Text="BSIT" 
-                                       FontSize="14" 
-                                       FontFamily="{DynamicResource FontFamilySemiBold}"
-                                       TextColor="{DynamicResource TertiaryColor}" 
-                                       HorizontalTextAlignment="Center" />
-                            </StackLayout>
-                        </Frame>
+                <!-- Error State -->
+                <Frame IsVisible="{Binding HasError}"
+                      CornerRadius="10"
+                      Margin="0,10"
+                      Padding="15"
+                      BackgroundColor="#FEE2E2">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="{Binding ErrorMessage}"
+                              TextColor="#DC2626"
+                              FontFamily="{DynamicResource FontFamilySemiBold}"/>
+                        <Button Text="Retry"
+                               Command="{Binding LoadDashboardDataCommand}"
+                               BackgroundColor="#DC2626"
+                               TextColor="White"/>
+                    </VerticalStackLayout>
+                </Frame>
 
-                        <Frame Grid.Column="1"
-                               Padding="15"
-                               BackgroundColor="{DynamicResource PrimaryColor}"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="Center"
-                               Margin="5,0,5,0">
-                            <StackLayout>
-                                <Image Source="bscs_icon.png" 
-                                       WidthRequest="50" 
-                                       HeightRequest="50" 
-                                       Margin="0,5,0,5"/>
-                                <Label Text="BSCS" 
-                                       FontSize="14" 
-                                       FontFamily="{DynamicResource FontFamilySemiBold}"
-                                       TextColor="{DynamicResource TertiaryColor}" 
-                                       HorizontalTextAlignment="Center" />
-                            </StackLayout>
-                        </Frame>
+                <!-- Total Students Card -->
+                <Frame CornerRadius="10"
+                      Margin="0,0,0,0"
+                      Padding="20"
+                      BackgroundColor="{DynamicResource PrimaryColor}">
+                    <Grid RowDefinitions="Auto, Auto" 
+                         ColumnDefinitions="*, Auto">
+                        <Label Grid.Row="0"
+                              Grid.Column="0"
+                              Text="Total Students"
+                              FontFamily="{DynamicResource FontFamilySemiBold}"
+                              FontSize="16"
+                              TextColor="{DynamicResource TertiaryColor}"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Center" />
 
-                       <Frame Grid.Column="2"
-                              Padding="15"
-                              BackgroundColor="{DynamicResource PrimaryColor}"
-                              VerticalOptions="CenterAndExpand"
-                              HorizontalOptions="Center"
-                              Margin="5,0,5,0">
-                           <StackLayout>
-                               <Image Source="bmma_icon.png" 
-                                      WidthRequest="50" 
-                                      HeightRequest="50" 
-                                      Margin="0,5,0,5"/>
-                               <Label Text="BMMA" 
-                                      FontSize="14" 
-                                      FontFamily="{DynamicResource FontFamilySemiBold}"
-                                      TextColor="{DynamicResource TertiaryColor}" 
-                                      HorizontalTextAlignment="Center" />
-                           </StackLayout>
-                       </Frame>
+                        <Image Grid.Row="0"
+                              Grid.Column="1"
+                              Source="student_icon_1.png"
+                              WidthRequest="32"
+                              HeightRequest="32"
+                              VerticalOptions="Center"
+                              HorizontalOptions="End"
+                              Margin="10,0,0,0" />
+
+                        <Label Grid.Row="1"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              Text="{Binding StudentCount}"
+                              FontFamily="{DynamicResource FontFamilyBold}"
+                              FontSize="32"
+                              TextColor="{DynamicResource TertiaryColor}"
+                              HorizontalOptions="Start"
+                              VerticalOptions="Center"
+                              Margin="0,10,0,0"/>
                     </Grid>
+                </Frame>
 
-                    <StackLayout Padding="0,0,0,15">
+                <!-- View Students Button -->
+                <Button Text="View Students"
+                       BackgroundColor="Transparent"
+                       BorderColor="{DynamicResource PrimaryColor}"
+                       BorderWidth="1"
+                       TextColor="{DynamicResource PrimaryColor}"
+                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                       CornerRadius="5"
+                       Padding="15"
+                       Clicked="OnViewStudentsButtonClicked"/>
+
+                <!-- Programs Section -->
+                <Label Text="Programs"
+                      FontFamily="{DynamicResource FontFamilyBold}"
+                      FontSize="22"
+                      TextColor="{DynamicResource SecondaryColor}"/>
+
+                <!-- Program Icons Grid -->
+                <Grid ColumnDefinitions="*,*,*" 
+                     RowSpacing="15"
+                     ColumnSpacing="15">
+                    <!-- BSIT -->
+                    <Frame Grid.Column="0"
+                          Padding="15"
+                          BackgroundColor="{DynamicResource PrimaryColor}"
+                          CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Image Source="bsit_icon.png"
+                                  WidthRequest="50"
+                                  HeightRequest="50"
+                                  Margin="0,5,0,5"/>
+                            <Label Text="BSIT"
+                                  FontSize="14"
+                                  FontFamily="{DynamicResource FontFamilySemiBold}"
+                                  TextColor="{DynamicResource TertiaryColor}"
+                                  HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- BSCS -->
+                    <Frame Grid.Column="1"
+                          Padding="15"
+                          BackgroundColor="{DynamicResource PrimaryColor}"
+                          CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Image Source="bscs_icon.png"
+                                  WidthRequest="50"
+                                  HeightRequest="50"
+                                  Margin="0,5,0,5"/>
+                            <Label Text="BSCS"
+                                  FontSize="14"
+                                  FontFamily="{DynamicResource FontFamilySemiBold}"
+                                  TextColor="{DynamicResource TertiaryColor}"
+                                  HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- BMMA -->
+                    <Frame Grid.Column="2"
+                          Padding="15"
+                          BackgroundColor="{DynamicResource PrimaryColor}"
+                          CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Image Source="bmma_icon.png"
+                                  WidthRequest="50"
+                                  HeightRequest="50"
+                                  Margin="0,5,0,5"/>
+                            <Label Text="BMMA"
+                                  FontSize="14"
+                                  FontFamily="{DynamicResource FontFamilySemiBold}"
+                                  TextColor="{DynamicResource TertiaryColor}"
+                                  HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Program Distribution Card -->
+                <Frame CornerRadius="10"
+                      Margin="0,-8,0,0"
+                      Padding="20"
+                      BackgroundColor="White">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Program Distribution"
+                              FontFamily="{DynamicResource FontFamilySemiBold}"
+                              FontSize="18"
+                              TextColor="{DynamicResource PrimaryColor}"
+                              Margin="0,0,0,10"/>
+
+                        <WebView x:Name="ChartWebView"
+                               HeightRequest="300"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"/>
+
+                        <BoxView HeightRequest="1" 
+                               Color="{DynamicResource PrimaryColor}" 
+                               Opacity="0.2"
+                               Margin="0,10"/>
+
                         <Label Text="No. of Students Per Program"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="20"
-                               TextColor="{DynamicResource SecondaryColor}"
-                               Margin="0,5,0,5" />
+                              FontFamily="{DynamicResource FontFamilySemiBold}"
+                              FontSize="18"
+                              TextColor="{DynamicResource PrimaryColor}"
+                              Margin="0,5,0,5" />
 
                         <CollectionView ItemsSource="{Binding StudentCountByProgram}"
-                                        VerticalOptions="Start"
-                                        HeightRequest="130">
+                                     VerticalOptions="Start"
+                                     HeightRequest="100">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="*, Auto" Padding="0,5">
-                                        <Label Text="{Binding Key}" 
-                                               FontSize="14" 
-                                               FontFamily="{DynamicResource FontFamilyRegular}"
-                                               TextColor="{DynamicResource SecondaryColor}" 
-                                               Margin="0,0,0,0"/>
-                                        <Label Text="{Binding Value}" 
-                                               FontSize="14" 
-                                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                                               TextColor="{DynamicResource PrimaryColor}" 
-                                               HorizontalTextAlignment="End" />
+                                    <Grid ColumnDefinitions="*, Auto" 
+                                         Padding="0,5">
+                                        <Label Text="{Binding Key}"
+                                              FontSize="14"
+                                              FontFamily="{DynamicResource FontFamilyRegular}"
+                                              TextColor="{DynamicResource SecondaryColor}"
+                                              Margin="0,0,0,0"/>
+                                        <Label Text="{Binding Value}"
+                                              Grid.Column="1"
+                                              FontSize="14"
+                                              FontFamily="{DynamicResource FontFamilySemiBold}"
+                                              TextColor="{DynamicResource PrimaryColor}"
+                                              HorizontalTextAlignment="End" />
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                    </StackLayout>
+                    </VerticalStackLayout>
+                </Frame>
 
-                </VerticalStackLayout>
-            </ScrollView>
-       
-            <Button Text="Logout"
-                    BackgroundColor="{DynamicResource PrimaryColor}"
-                    FontFamily="{DynamicResource FontFamilySemiBold}"
-                    TextColor="{DynamicResource TertiaryColor}"
-                    Padding="15"
-                    Clicked="OnLogoutButtonClicked" />
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- Logout Button -->
+                <Button Text="Logout"
+                       BackgroundColor="{DynamicResource PrimaryColor}"
+                       TextColor="{DynamicResource TertiaryColor}"
+                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                       CornerRadius="5"
+                       Padding="15"
+                       Clicked="OnLogoutButtonClicked"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>
