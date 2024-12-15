@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.AcademicHistoryPage"
+             BackgroundColor="{DynamicResource TertiaryColor}"
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout Padding="30,30">
@@ -12,70 +13,72 @@
                    Margin="0,10"/>
 
             <Label Text="{Binding StudentName}"
-                   FontFamily="{DynamicResource FontFamilyBold}"
-                   FontSize="16"
-                   Margin="0,25"
+                   FontFamily="{DynamicResource FontFamilySemiBold}"
+                   FontSize="20"
+                   Margin="0,15"
                    HorizontalTextAlignment="Center"/>
-            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0" />
-
 
             <ListView ItemsSource="{Binding AcademicHistoryRecords}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Margin="5,20">
-                                <HorizontalStackLayout Spacing="5">
-                                    <Label Text="Level:" 
-                                           FontFamily="{DynamicResource FontFamilySemiBold}" 
-                                           FontSize="14" />
+                            <Frame BackgroundColor="#e1edfb" CornerRadius="10" Padding="20" Margin="0,5">
+                                <StackLayout Orientation="Vertical" Margin="5,5">
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="Level:" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontSize="14" />
 
-                                    <Label Text="{Binding Level}" 
-                                       FontFamily="{DynamicResource FontFamilyRegular}" 
-                                       FontSize="14"/>
-                                </HorizontalStackLayout>
+                                        <Label Text="{Binding Level}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
 
-                                <HorizontalStackLayout Spacing="5">
-                                    <Label Text="Program:" 
-                                           FontFamily="{DynamicResource FontFamilySemiBold}" 
-                                           FontSize="14" />
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="Program:" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontSize="14" />
 
-                                    <Label Text="{Binding ProgramName}" 
-                                       FontFamily="{DynamicResource FontFamilyRegular}" 
-                                       FontSize="14"/>
-                                </HorizontalStackLayout>
+                                        <Label Text="{Binding ProgramName}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
 
-                                <HorizontalStackLayout Spacing="5">
-                                    <Label Text="School Year:" 
-                                           FontFamily="{DynamicResource FontFamilySemiBold}" 
-                                           FontSize="14" />
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="School Year:" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontSize="14" />
+                                        <Label Text="{Binding SchoolYear}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
 
-                                    <Label Text="{Binding SchoolYear}" 
-                                       FontFamily="{DynamicResource FontFamilyRegular}" 
-                                       FontSize="14"/>
-                                </HorizontalStackLayout>
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="Semester:" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontSize="14" />
 
-                                <HorizontalStackLayout Spacing="5">
-                                    <Label Text="Semester:" 
-                                           FontFamily="{DynamicResource FontFamilySemiBold}" 
-                                           FontSize="14" />
+                                        <Label Text="{Binding Semester}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
 
-                                    <Label Text="{Binding Semester}" 
-                                       FontFamily="{DynamicResource FontFamilyRegular}" 
-                                       FontSize="14"/>
-                                </HorizontalStackLayout>
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Label Text="Grade:" 
+                                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontSize="14" />
 
-
-                                <HorizontalStackLayout Spacing="5">
-                                    <Label Text="Grade:" 
-                                           FontFamily="{DynamicResource FontFamilySemiBold}" 
-                                           FontSize="14" />
-
-                                    <Label Text="{Binding Grade}" 
-                                       FontFamily="{DynamicResource FontFamilyRegular}" 
-                                       FontSize="14"/>
-                                </HorizontalStackLayout>
-
-                            </StackLayout>
+                                        <Label Text="{Binding Grade}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                                               FontSize="14"/>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -88,80 +91,88 @@
                 FontFamily="{DynamicResource FontFamilySemiBold}"
                 CornerRadius="5"
                 Padding="15"
-                Margin="0,30,0,0"
+                Margin="0,30,0,15"
                 Command="{Binding OpenAddRecordModalCommand}" />
+            
+            <!-- Add Academic Record Modal -->
+            <ContentView IsVisible="{Binding IsAddRecordModalVisible}">
+                <Frame Padding="20" BackgroundColor="#e1edfb" CornerRadius="15" VerticalOptions="Center" Margin="20">
+                    <VerticalStackLayout Spacing="15">
+                        <!-- Title -->
+                        <Label Text="Add Academic Record" 
+                               FontAttributes="Bold" 
+                               FontSize="20"
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyBold}" 
+                               HorizontalOptions="Center" />
 
-            <ContentView IsVisible="{Binding IsAddRecordModalVisible}" BackgroundColor="Transparent" Padding="30">
-                <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="10" WidthRequest="300" BackgroundColor="Transparent">
-                    <VerticalStackLayout>
-                        <Label Text="Add Academic Record" FontFamily="{DynamicResource FontFamilyBold}" FontSize="20" HorizontalOptions="Center" />
-
+                        <!-- Program Field -->
                         <Label Text="Program" 
-                               Margin="-8,20,0,0"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="14"/>
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
                         <Picker ItemsSource="{Binding Programs}"
                                 ItemDisplayBinding="{Binding ProgramName}"
                                 SelectedItem="{Binding SelectedProgram}"
-                                Margin="0,10,0,0"
                                 FontFamily="{DynamicResource FontFamilyRegular}"/>
 
-                        <Label Text="Level"
-                               Margin="-8,20,0,0"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="14"/>
-                        <Picker ItemsSource="{Binding Levels}" 
-                                SelectedItem="{Binding SelectedLevel}" 
-                                Margin="0,10,0,0"
+                        <!-- Level Field -->
+                        <Label Text="Level" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
+                        <Picker ItemsSource="{Binding Levels}"
+                                SelectedItem="{Binding SelectedLevel}"
                                 FontFamily="{DynamicResource FontFamilyRegular}"/>
 
+                        <!-- Semester Field -->
                         <Label Text="Semester" 
-                               Margin="-8,20,0,0"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="14"/>
-                        <Picker ItemsSource="{Binding Semesters}" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
+                        <Picker ItemsSource="{Binding Semesters}"
                                 SelectedItem="{Binding SelectedSemester}"
-                                Margin="0,10,0,0"
                                 FontFamily="{DynamicResource FontFamilyRegular}"/>
 
+                        <!-- School Year Field -->
                         <Label Text="School Year" 
-                               Margin="-8,20,0,0"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="14"/>
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
                         <Entry Text="{Binding SchoolYearInput}" 
                                Placeholder="e.g., 2024-2025" 
-                               FontFamily="{DynamicResource FontFamilyRegular}"
-                               Margin="0,10,0,0"/>
-
+                               FontFamily="{DynamicResource FontFamilyRegular}"/>
+                        
+                        <!-- Grade Field -->
                         <Label Text="Grade" 
-                               Margin="-8,20,0,0"
-                               FontFamily="{DynamicResource FontFamilySemiBold}"
-                               FontSize="14"/>
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
                         <Entry Text="{Binding GradeInput}" Keyboard="Numeric" 
-                               Margin="0,10,0,0"
-                               FontFamily="{DynamicResource FontFamilyRegular}"
-                               />
-
-
-                        <Button 
-                            Text="Add"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            TextColor="{DynamicResource TertiaryColor}"
-                            FontFamily="{DynamicResource FontFamilySemiBold}"
-                            CornerRadius="5"
-                            Padding="15"
-                            Margin="0,10,0,0"
-                            Command="{Binding AddAcademicRecordCommand}" />
-                        <Button 
-                            Text="Cancel"
-                            BackgroundColor="Transparent"
-                            BorderColor="Transparent"
-                            TextColor="{DynamicResource PrimaryColor}"
-                            FontFamily="{DynamicResource FontFamilySemiBold}"
-                            CornerRadius="5"
-                            Padding="15"
-                            Margin="0,10,0,0"
-                            Command="{Binding CloseAddRecordModalCommand}" />
+                               FontFamily="{DynamicResource FontFamilyRegular}"/>
+                        
+                        <!-- Save and Cancel Buttons -->
+                        <HorizontalStackLayout 
+                            HorizontalOptions="Center" 
+                            Spacing="20"
+                            Margin="0,15">
+                            <Button Text="Save" 
+                                    Command="{Binding AddAcademicRecordCommand}" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                                    TextColor="White"
+                                    FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                    Padding="10"
+                                    CornerRadius="5"
+                                    WidthRequest="100" />
+                            <Button Text="Cancel" 
+                                    Command="{Binding CloseAddRecordModalCommand}" 
+                                    BackgroundColor="{DynamicResource SecondaryColor}" 
+                                    TextColor="White"
+                                    FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                    Padding="10"
+                                    CornerRadius="5"
+                                    WidthRequest="100" />
+                        </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Frame>
             </ContentView>
