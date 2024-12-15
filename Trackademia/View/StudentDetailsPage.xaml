@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.StudentDetailsPage"
+             BackgroundColor="{DynamicResource TertiaryColor}"
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout Padding="30,30">
 
             <Label Text="Student Details" 
                    FontFamily="{DynamicResource FontFamilyBold}"
-                   FontSize="20" 
+                   FontSize="24" 
                    HorizontalOptions="Center"/>
 
             <Image Source="student_icon_2.png"
