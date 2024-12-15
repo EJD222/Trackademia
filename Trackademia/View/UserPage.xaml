@@ -14,6 +14,17 @@
             <Button Text="View Students"
                     Command="{Binding LoadUserCommand}"/>
 
+            <Picker Title="Filter by Program"
+                    SelectedIndexChanged="OnFilterProgramChanged"
+                    HorizontalOptions="Center">
+                <Picker.Items>
+                    <x:String>All Programs</x:String>
+                    <x:String>Bachelor of Science in Information Technology</x:String>
+                    <x:String>Bachelor of Science in Computer Science</x:String>
+                    <x:String>Bachelor of Multimedia Arts</x:String>
+                </Picker.Items>
+            </Picker>
+            
             <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

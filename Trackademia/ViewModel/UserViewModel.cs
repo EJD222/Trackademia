@@ -155,7 +155,31 @@ namespace Trackademia.ViewModel
             });
         }
 
-        private async Task LoadUsers()
+        public async Task FilterUsersByProgramValue(int programValue)
+        {
+            try
+            {
+                var allUsers = await _userService.GetUserAsync();
+
+                // Filter users where Program matches the selected program value
+                var filteredUsers = allUsers.Where(u => u.Program == programValue).ToList();
+
+                Console.WriteLine($"Filtering by Program Value: {programValue}");
+                Console.WriteLine($"Filtered users count: {filteredUsers.Count}");
+
+                Users.Clear();
+                foreach (var user in filteredUsers)
+                {
+                    Users.Add(user);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error filtering users by program: {ex.Message}");
+            }
+        }
+
+        public async Task LoadUsers()
         {
             var users = await _userService.GetUserAsync();
             Users.Clear();
