@@ -9,6 +9,7 @@
 
             <Label Text="Student Details" 
                    FontFamily="{DynamicResource FontFamilyBold}"
+                   TextColor="{DynamicResource SecondaryColor}"
                    FontSize="24" 
                    HorizontalOptions="Center"/>
 
@@ -22,6 +23,7 @@
             <Label Text="{Binding Student.Name}"
                    FontSize="20"
                    FontFamily="{DynamicResource FontFamilyBold}"
+                   TextColor="{DynamicResource SecondaryColor}"
                    HorizontalTextAlignment="Center"
                    Margin="0,15"
                     />
@@ -49,6 +51,7 @@
                 <Label Text="Personal Information"
                        FontSize="16"
                        FontFamily="{DynamicResource FontFamilyRegular}"
+                       TextColor="{DynamicResource SecondaryColor}"
                        Grid.Column="1"
                        VerticalOptions="Center"
                        HorizontalOptions="StartAndExpand"
@@ -85,6 +88,7 @@
                 <Label Text="Academic History"
                        FontSize="16"
                        FontFamily="{DynamicResource FontFamilyRegular}"
+                       TextColor="{DynamicResource SecondaryColor}"
                        Grid.Column="1"
                        VerticalOptions="Center"
                        HorizontalOptions="StartAndExpand"
@@ -121,6 +125,7 @@
                 <Label Text="Attendance Records"
                        FontSize="16"
                        FontFamily="{DynamicResource FontFamilyRegular}"
+                       TextColor="{DynamicResource SecondaryColor}"
                        Grid.Column="1"
                        VerticalOptions="Center"
                        HorizontalOptions="StartAndExpand"

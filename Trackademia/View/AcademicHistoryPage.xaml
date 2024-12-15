@@ -9,11 +9,13 @@
             <Label Text="Academic History" 
                    FontSize="26"
                    FontFamily="{DynamicResource FontFamilyBold}"
+                   TextColor="{DynamicResource SecondaryColor}"
                    HorizontalOptions="Center"
                    Margin="0,10"/>
 
             <Label Text="{Binding StudentName}"
                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                   TextColor="{DynamicResource SecondaryColor}"
                    FontSize="20"
                    Margin="0,15"
                    HorizontalTextAlignment="Center"/>
