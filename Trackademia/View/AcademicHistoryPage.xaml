@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,30">
             <Label Text="Academic History" 
-                   FontSize="20"
+                   FontSize="26"
                    FontFamily="{DynamicResource FontFamilyBold}"
                    HorizontalOptions="Center"
                    Margin="0,10"/>
@@ -96,22 +96,52 @@
                     <VerticalStackLayout>
                         <Label Text="Add Academic Record" FontFamily="{DynamicResource FontFamilyBold}" FontSize="20" HorizontalOptions="Center" />
 
-                        <Label Text="Program" />
+                        <Label Text="Program" 
+                               Margin="-8,20,0,0"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="14"/>
                         <Picker ItemsSource="{Binding Programs}"
-                            ItemDisplayBinding="{Binding ProgramName}"
-                            SelectedItem="{Binding SelectedProgram}" />
+                                ItemDisplayBinding="{Binding ProgramName}"
+                                SelectedItem="{Binding SelectedProgram}"
+                                Margin="0,10,0,0"
+                                FontFamily="{DynamicResource FontFamilyRegular}"/>
 
-                        <Label Text="Level" />
-                        <Picker ItemsSource="{Binding Levels}" SelectedItem="{Binding SelectedLevel}" />
+                        <Label Text="Level"
+                               Margin="-8,20,0,0"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="14"/>
+                        <Picker ItemsSource="{Binding Levels}" 
+                                SelectedItem="{Binding SelectedLevel}" 
+                                Margin="0,10,0,0"
+                                FontFamily="{DynamicResource FontFamilyRegular}"/>
 
-                        <Label Text="Semester" />
-                        <Picker ItemsSource="{Binding Semesters}" SelectedItem="{Binding SelectedSemester}" />
+                        <Label Text="Semester" 
+                               Margin="-8,20,0,0"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="14"/>
+                        <Picker ItemsSource="{Binding Semesters}" 
+                                SelectedItem="{Binding SelectedSemester}"
+                                Margin="0,10,0,0"
+                                FontFamily="{DynamicResource FontFamilyRegular}"/>
 
-                        <Label Text="School Year" />
-                        <Entry Text="{Binding SchoolYearInput}" Placeholder="e.g., 2024-2025" />
+                        <Label Text="School Year" 
+                               Margin="-8,20,0,0"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="14"/>
+                        <Entry Text="{Binding SchoolYearInput}" 
+                               Placeholder="e.g., 2024-2025" 
+                               FontFamily="{DynamicResource FontFamilyRegular}"
+                               Margin="0,10,0,0"/>
 
-                        <Label Text="Grade" />
-                        <Entry Text="{Binding GradeInput}" Keyboard="Numeric" />
+                        <Label Text="Grade" 
+                               Margin="-8,20,0,0"
+                               FontFamily="{DynamicResource FontFamilySemiBold}"
+                               FontSize="14"/>
+                        <Entry Text="{Binding GradeInput}" Keyboard="Numeric" 
+                               Margin="0,10,0,0"
+                               FontFamily="{DynamicResource FontFamilyRegular}"
+                               />
+
 
                         <Button 
                             Text="Add"
@@ -119,7 +149,7 @@
                             TextColor="{DynamicResource TertiaryColor}"
                             FontFamily="{DynamicResource FontFamilySemiBold}"
                             CornerRadius="5"
-                            Padding="10"
+                            Padding="15"
                             Margin="0,10,0,0"
                             Command="{Binding AddAcademicRecordCommand}" />
                         <Button 
@@ -129,7 +159,7 @@
                             TextColor="{DynamicResource PrimaryColor}"
                             FontFamily="{DynamicResource FontFamilySemiBold}"
                             CornerRadius="5"
-                            Padding="10"
+                            Padding="15"
                             Margin="0,10,0,0"
                             Command="{Binding CloseAddRecordModalCommand}" />
                     </VerticalStackLayout>

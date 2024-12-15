@@ -2,16 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.AttendancePage"
-             Title="AttendancePage">
+             Shell.NavBarIsVisible="False">
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Label Text="Attendance Records" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+        <VerticalStackLayout Padding="30,30">
+            <Label Text="Attendance Records" 
+                   FontSize="26"
+                   FontFamily="{DynamicResource FontFamilyBold}"
+                   HorizontalOptions="Center"
+                   Margin="0,10"/>
+            <Label Text="{Binding StudentName}"
+                   FontFamily="{DynamicResource FontFamilySemiBold}"
+                   FontSize="16"
+                   Margin="0,25"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding StudentNumber}"
+                   FontFamily="{DynamicResource FontFamilyRegular}"
+                   FontSize="16"
+                   Margin="-20"
+                   HorizontalTextAlignment="Center"/>
 
-            <Label Text="Student Name:" FontAttributes="Bold" />
-            <Label Text="{Binding StudentName}" />
+            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,35" />
 
-            <Label Text="Student Number:" FontAttributes="Bold" />
-            <Label Text="{Binding StudentNumber}" />
             <ScrollView>
                 <ListView ItemsSource="{Binding AttendanceRecords}"
                       SelectedItem="{Binding SelectedAttendance}">
@@ -33,12 +44,14 @@
             <DatePicker Date="{Binding SelectedDate}" />
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button Text="Mark Present"
+                <Button 
+                    Text="Mark Present"
                     BackgroundColor="Green"
                     TextColor="White"
                     Command="{Binding MarkPresentCommand}"
                     CommandParameter="Present" />
-                <Button Text="Mark Absent"
+                <Button 
+Text="Mark Absent"
                     BackgroundColor="Red"
                     TextColor="White"
                     Command="{Binding MarkAbsentCommand}"
