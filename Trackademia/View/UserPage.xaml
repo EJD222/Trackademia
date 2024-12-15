@@ -2,94 +2,286 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.UserPage"
-             Title="UserPage"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False"
+             Title="Student List"
              x:Name="UserPageView">
     <ScrollView>
-        <VerticalStackLayout>
-            <Label 
-             Text="Student List"
-             VerticalOptions="Center" 
-             HorizontalOptions="Center" />
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <!-- Title -->
+            <Label Text="Student List" 
+                   FontFamily="{DynamicResource FontFamilyBold}"
+                   TextColor="{DynamicResource SecondaryColor}"
+                   FontSize="24" 
+                   HorizontalOptions="Center"
+                   Margin="0,10"/>
 
-            <Button Text="View Students"
-                    Command="{Binding LoadUserCommand}"/>
+           <!-- Student Records Section -->
+            <Label Text="Student Records" 
+                   FontFamily="{DynamicResource FontFamilyBold}"
+                   TextColor="{DynamicResource SecondaryColor}"                   
+                   FontSize="18"
+                   HorizontalOptions="Start" 
+                   Margin="0,20,0,0" />
 
-            <Picker Title="Filter by Program"
-                    SelectedIndexChanged="OnFilterProgramChanged"
-                    HorizontalOptions="Center">
-                <Picker.Items>
-                    <x:String>All Programs</x:String>
-                    <x:String>Bachelor of Science in Information Technology</x:String>
-                    <x:String>Bachelor of Science in Computer Science</x:String>
-                    <x:String>Bachelor of Multimedia Arts</x:String>
-                </Picker.Items>
-            </Picker>
-            
+            <!-- Filter by Program -->
+            <Grid ColumnDefinitions="*, 2*" Padding="0" Margin="0,10">
+                <!-- Column 1: Label -->
+                <Label Text="Select a Program" 
+                       FontAttributes="Bold"
+                       FontSize="16" 
+                       TextColor="{DynamicResource SecondaryColor}" 
+                       FontFamily="{DynamicResource FontFamilyBold}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" 
+                       Grid.Column="0" />
+
+                <!-- Column 2: Picker -->
+                <Picker SelectedIndexChanged="OnFilterProgramChanged"
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="40"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        TextColor="{DynamicResource TertiaryColor}"
+                        FontFamily="{DynamicResource FontFamilyBold}"
+                        FontSize="12"
+                        Grid.Column="1">
+                    <Picker.Items>
+                        <x:String>All Programs</x:String>
+                        <x:String>Bachelor of Science in Information Technology</x:String>
+                        <x:String>Bachelor of Science in Computer Science</x:String>
+                        <x:String>Bachelor of Multimedia Arts</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+
+            <!-- Student List -->
             <ListView ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" 
-                                      Padding="10">
-                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                <Label Text=" | "/>
-                                <Label Text="{Binding StudentId}"/>
-                                <Label Text=" | "/>
-                                <Label Text="{Binding ProgramName}"/>
-                                <Button Text="View Details"
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}"
-                                     CommandParameter="{Binding ID}" />
+                            <Frame BackgroundColor="#e1edfb" CornerRadius="10" Padding="15" Margin="0,5">
+                                <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center">
+                                    <Image Source="student_icon_2.png" 
+                                           WidthRequest="50" 
+                                           HeightRequest="50" 
+                                           Grid.RowSpan="3" 
+                                           Grid.Column="0"
+                                           Margin="0,0,15,0"
+                                           VerticalOptions="Center" HorizontalOptions="Center" />
 
-                            </StackLayout>
+                                    <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
+                                        <Label Text="{Binding Name}" 
+                                               TextColor="{DynamicResource PrimaryColor}" 
+                                               FontFamily="{DynamicResource FontFamilyBold}"
+                                               FontSize="14" />
+                                        <Label Text="{Binding StudentId}" 
+                                               FontSize="12" 
+                                               TextColor="{DynamicResource SecondaryColor}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" />
+                                        <Label Text="{Binding ProgramName}" 
+                                               FontSize="12" 
+                                               TextColor="{DynamicResource SecondaryColor}" 
+                                               FontFamily="{DynamicResource FontFamilyRegular}" />
+                                    </StackLayout>
+
+                                    <Button Grid.Column="2"
+                                            Text="View Details"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}"
+                                            CommandParameter="{Binding ID}"
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            FontFamily="{DynamicResource FontFamilySemiBold}"
+                                            TextColor="{DynamicResource TertiaryColor}"
+                                            HeightRequest="40"
+                                            WidthRequest="125"
+                                            CornerRadius="3"
+                                            FontSize="12" />
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
+            <Button Text="View Students"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    TextColor="{DynamicResource TertiaryColor}"
+                    CornerRadius="5"
+                    Padding="15"
+                    Margin="0,10,0,30"
+                    Command="{Binding LoadUserCommand}"/>
+            
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0">
+                <Label Text="Add a Student" 
+                       FontSize="18" 
+                       TextColor="{DynamicResource SecondaryColor}" 
+                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                       VerticalOptions="Center"/>
+                <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20"
+                       BackgroundColor="{DynamicResource PrimaryColor}"
+                       HorizontalOptions="End" VerticalOptions="Center" Padding="5">
+                    <ImageButton Source="add_icon.png"
+                                 WidthRequest="20" 
+                                 HeightRequest="20"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding OpenAddStudentModalCommand}" />
+                </Frame>
+            </Grid>
 
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                <Button Text="Add Student" Command="{Binding OpenAddStudentModalCommand}" />
-                <Button Text="Update Student" Command="{Binding OpenUpdateStudentModalCommand}" IsEnabled="{Binding SelectedUser, Converter={StaticResource NullToBoolConverter}}" />
-                <Button Text="Delete Student"
-                 Command="{Binding DeleteUserCommand}"/>
-            </HorizontalStackLayout>
-            <!-- Add/Update Student Modal -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0">
+                <Label Text="Edit Student" 
+                       FontSize="18" 
+                       TextColor="{DynamicResource SecondaryColor}" 
+                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                       VerticalOptions="Center"/>
+                <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20"
+                       BackgroundColor="{DynamicResource PrimaryColor}"
+                       HorizontalOptions="End" VerticalOptions="Center" Padding="5">
+                    <ImageButton Source="edit_icon.png"
+                                 WidthRequest="20" 
+                                 HeightRequest="20"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding OpenUpdateStudentModalCommand}" 
+                                 IsEnabled="{Binding SelectedUser, Converter={StaticResource NullToBoolConverter}}" />
+                </Frame>
+            </Grid>
+
+            <!-- Delete Student Section -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,30">
+                <Label Text="Delete Student" 
+                       FontSize="18" 
+                       TextColor="{DynamicResource SecondaryColor}" 
+                       FontFamily="{DynamicResource FontFamilySemiBold}"
+                       VerticalOptions="Center"/>
+                <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20"
+                       BackgroundColor="{DynamicResource PrimaryColor}"
+                       HorizontalOptions="End" VerticalOptions="Center" Padding="5">
+                    <ImageButton Source="delete_icon.png"
+                                 WidthRequest="20" 
+                                 HeightRequest="20"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding DeleteUserCommand}" />
+                </Frame>
+            </Grid>
+
+           <!-- Add/Update Student Modal -->
             <ContentView IsVisible="{Binding IsStudentModalVisible}">
-                <Frame Padding="20" BackgroundColor="Black" VerticalOptions="Center">
-                    <VerticalStackLayout>
-                        <Label Text="Student Form" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Frame Padding="20" BackgroundColor="#e1edfb" CornerRadius="15" VerticalOptions="Center" Margin="20">
+                    <VerticalStackLayout Spacing="15">
+                        <!-- Title -->
+                        <Label Text="Student Form" 
+                               FontAttributes="Bold" 
+                               FontSize="20"
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyBold}" 
+                               HorizontalOptions="Center" />
 
-                        <Label Text="Name" />
-                        <Entry Placeholder="Enter Name" Text="{Binding NameInput}" />
+                        <!-- Name Field -->
+                        <Label Text="Name" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" />
+                        <Entry Placeholder="Enter Name" 
+                               Text="{Binding NameInput}" 
+                               BackgroundColor="White" 
+                               TextColor="{DynamicResource SecondaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                               FontSize="14"
+                               PlaceholderColor="Gray" />
 
-                        <Label Text="Email" />
-                        <Entry Placeholder="Enter Email" Text="{Binding EmailInput}" />
+                        <!-- Email Field -->
+                        <Label Text="Email" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" />
+                        <Entry Placeholder="Enter Email" 
+                               Text="{Binding EmailInput}" 
+                               BackgroundColor="White" 
+                               TextColor="{DynamicResource SecondaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                               FontSize="14"
+                               PlaceholderColor="Gray" />
 
-                        <Label Text="Student ID" />
-                        <Entry Placeholder="Enter Student ID" Text="{Binding StudentIdInput}" />
+                        <!-- Student ID Field -->
+                        <Label Text="Student ID" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
+                        <Entry Placeholder="Enter Student ID" 
+                               Text="{Binding StudentIdInput}" 
+                               BackgroundColor="White" 
+                               TextColor="{DynamicResource SecondaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                               FontSize="14"
+                               PlaceholderColor="Gray" />
 
-                        <Label Text="Address" />
-                        <Entry Placeholder="Enter Address" Text="{Binding AddressInput}" />
+                        <!-- Address Field -->
+                        <Label Text="Address" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
+                        <Entry Placeholder="Enter Address" 
+                               Text="{Binding AddressInput}" 
+                               BackgroundColor="White" 
+                               TextColor="{DynamicResource SecondaryColor}" 
+                               FontFamily="{DynamicResource FontFamilyRegular}" 
+                               FontSize="14"
+                               PlaceholderColor="Gray" />
 
-                        <Label Text="Birthdate" />
-                        <DatePicker Date="{Binding BirthdateInput}" />
+                        <!-- Birthdate Field -->
+                        <Label Text="Birthdate" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
+                        <DatePicker Date="{Binding BirthdateInput}" 
+                                    TextColor="{DynamicResource SecondaryColor}" 
+                                    FontFamily="{DynamicResource FontFamilyRegular}" 
+                                    BackgroundColor="White" />
 
-                        <Label Text="Program" />
+                        <!-- Program Field -->
+                        <Label Text="Program" 
+                               FontSize="14" 
+                               TextColor="{DynamicResource PrimaryColor}" 
+                               FontFamily="{DynamicResource FontFamilySemiBold}" />
                         <Picker ItemsSource="{Binding Programs}" 
-                            ItemDisplayBinding="{Binding ProgramName}" 
-                            SelectedItem="{Binding SelectedProgram}" />
+                                ItemDisplayBinding="{Binding ProgramName}" 
+                                SelectedItem="{Binding SelectedProgram}" 
+                                BackgroundColor="White" 
+                                TextColor="{DynamicResource SecondaryColor}" 
+                                FontFamily="{DynamicResource FontFamilyRegular}" />
 
-                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                            <Button Text="Save" Command="{Binding SaveStudentCommand}" />
-                            <Button Text="Cancel" Command="{Binding CloseStudentModalCommand}" />
+                        <!-- Save and Cancel Buttons -->
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                            <Button Text="Save" 
+                                    Command="{Binding SaveStudentCommand}" 
+                                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                                    TextColor="White"
+                                    FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                    Padding="10"
+                                    CornerRadius="5"
+                                    WidthRequest="100" />
+                            <Button Text="Cancel" 
+                                    Command="{Binding CloseStudentModalCommand}" 
+                                    BackgroundColor="{DynamicResource SecondaryColor}" 
+                                    TextColor="White"
+                                    FontFamily="{DynamicResource FontFamilySemiBold}" 
+                                    Padding="10"
+                                    CornerRadius="5"
+                                    WidthRequest="100" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Frame>
             </ContentView>
 
-            <Button
-              Text="BackToDashboard"
-              Clicked="OnDashboardButtonClicked"/>
+            <!-- Back to Dashboard Button -->
+            <Button Text="Back to Dashboard" 
+                    Clicked="OnDashboardButtonClicked"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    FontFamily="{DynamicResource FontFamilySemiBold}"
+                    TextColor="{DynamicResource TertiaryColor}"
+                    CornerRadius="5"
+                    Padding="15"
+                    Margin="0,10,0,30" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
