@@ -35,45 +35,45 @@ and has a backend integration with a PHP API and MySQL database. This project se
 ### LoginPage
 #### Output Screenshots
 <p align="center">
-    <img src="Screenshots/1-LoginScreen.png" alt="1-LoginScreen" width="270" height="694">
-    <img src="Screenshots/2-LoginScreen.png" alt="2-LoginScreen" width="270" height="694">
+    <img src="Screenshots/1-LoginScreen.png" alt="1-LoginScreen" width="183" height="694">
+    <img src="Screenshots/2-LoginScreen.png" alt="2-LoginScreen" width="183" height="694">
 </p>
 
 ### Dashboard
 #### Output Screenshots
 <p align="center">
-    <img src="Screenshots/3-Dashboard.png" alt="3-Dashboard" width="270" height="694">
-    <img src="Screenshots/4-Dashboard.png" alt="4-Dashboard" width="270" height="694">
+    <img src="Screenshots/3-Dashboard.png" alt="3-Dashboard" width="183" height="694">
+    <img src="Screenshots/4-Dashboard.png" alt="4-Dashboard" width="183" height="694">
 </p>
 
 ### Student List with Filter and CRUD
 #### Output Screenshots
 <p align="center">
-    <img src="Screenshots/5-StudentList.png" alt="5-StudentList" width="270" height="694">
-    <img src="Screenshots/6-AddStudent.png" alt="6-AddStudent" width="270" height="694">
+    <img src="Screenshots/5-StudentList.png" alt="5-StudentList" width="183" height="514">
+    <img src="Screenshots/6-AddStudent.png" alt="6-AddStudent" width="183" height="514">
 </p>
 <p align="center">
-    <img src="Screenshots/7-EditStudent.png" alt="7-EditStudent" width="270" height="694">
-    <img src="Screenshots/8-UpdatedStudentList.png" alt="8-UpdatedStudentList" width="270" height="694">
+    <img src="Screenshots/7-EditStudent.png" alt="7-EditStudent" width="183" height="514">
+    <img src="Screenshots/8-UpdatedStudentList.png" alt="8-UpdatedStudentList" width="514" height="514">
 </p>
 
 ### Student Details (Personal Information, Academic History, and Attendance Records)
 #### Output Screenshots
 <p align="center">
-    <img src="Screenshots/9-StudentDetails" alt="9-StudentDetails" width="270" height="694">
-    <img src="Screenshots/10-PersonalInformation.png" alt="10-PersonalInformation" width="270" height="694">
+    <img src="Screenshots/9-StudentDetails.png" alt="9-StudentDetails" width="183" height="514">
+    <img src="Screenshots/10-PersonalInformation.png" alt="10-PersonalInformation" width="183" height="514">
 </p>
 <p align="center">
-    <img src="Screenshots/11-AcademicHistory.png" alt="11-AcademicHistory" width="270" height="694">
-    <img src="Screenshots/12-AddAcademicHistory.png" alt="12-AddAcademicHistory" width="270" height="694">
+    <img src="Screenshots/11-AcademicHistory.png" alt="11-AcademicHistory" width="183" height="514">
+    <img src="Screenshots/12-AddAcademicHistory.png" alt="12-AddAcademicHistory" width="183" height="514">
 </p>
 <p align="center">
-    <img src="Screenshots/13-AddDetailsOnAcademicHistory.png" alt="13-AddDetailsOnAcademicHistory.png" width="270" height="694">
-    <img src="Screenshots/14-UpdatedAcademicHistory.png" alt="14-UpdatedAcademicHistory.png" width="270" height="694">
+    <img src="Screenshots/13-AddDetailsOnAcademicHistory.png" alt="13-AddDetailsOnAcademicHistory.png" width="183" height="514">
+    <img src="Screenshots/14-UpdatedAcademicHistory.png" alt="14-UpdatedAcademicHistory.png" width="183" height="514">
 </p>
 <p align="center">
-    <img src="Screenshots/15-AttendanceRecords.png" alt="15-AttendanceRecords.png" width="270" height="694">
-    <img src="Screenshots/16-UpdatedAttendanceRecords.png" alt="16-UpdatedAttendanceRecords.png" width="270" height="694">
+    <img src="Screenshots/15-AttendanceRecords.png" alt="15-AttendanceRecords.png" width="183" height="514">
+    <img src="Screenshots/16-UpdatedAttendanceRecords.png" alt="16-UpdatedAttendanceRecords.png" width="183" height="514">
 </p>
 
 ## Technical Stack
