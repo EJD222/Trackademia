@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trackademia.View.StudentInformationPage"
              Shell.NavBarIsVisible="False">
+    
     <VerticalStackLayout Padding="30,30">
         <Label Text="Personal Information" 
                FontFamily="{DynamicResource FontFamilyBold}"
